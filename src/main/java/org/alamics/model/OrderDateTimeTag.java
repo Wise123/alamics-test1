@@ -19,6 +19,6 @@ public class OrderDateTimeTag extends AbstractTlvTag<Long> {
     TimeZone gmtTime = TimeZone.getTimeZone("GMT");
     dateFormat.setTimeZone(gmtTime);
 
-    return "\"dateTime\": " + dateFormat.format(new Date(value*1000));
+    return "\"dateTime\": \"" + dateFormat.format(new Date(value*1000)) + "\"";
   }
 }

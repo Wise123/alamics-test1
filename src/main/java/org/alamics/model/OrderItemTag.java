@@ -14,6 +14,7 @@ public class OrderItemTag extends AbstractTlvTag<List<AbstractTlvTag>> {
   }
 
   public String toJson() {
-    return "\"items\": " + value.stream().map(AbstractTlvTag::toJson).collect(Collectors.toList());
+    String resultString = value.stream().map(AbstractTlvTag::toJson).collect(Collectors.toList()).toString();
+    return "{" + resultString.substring(1, resultString.length()-2) + "}";
   }
 }

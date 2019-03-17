@@ -11,6 +11,6 @@ public class OrderItemNameTag extends AbstractTlvTag<String> {
   }
 
   public String toJson() {
-    return "\"name\": " + value;
+    return "\"name\": \"" + value + "\"";
   }
 }

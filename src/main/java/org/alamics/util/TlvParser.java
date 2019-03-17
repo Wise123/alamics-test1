@@ -10,7 +10,6 @@ import java.util.List;
 
 import org.alamics.model.*;
 import org.alamics.model.enums.TagType;
-import org.joou.UInteger;
 
 public class TlvParser {
   InputStream inputStream;
@@ -29,7 +28,6 @@ public class TlvParser {
     while (inputStream.available() > 0) {
       try {
         byte[] bytetagId = inputStream.readNBytes(2);
-        System.out.println(Arrays.toString(bytetagId));
         byte[] fullBytetagId = new byte[4];
         fullBytetagId[0] = bytetagId[0];
         fullBytetagId[1] = bytetagId[1];
@@ -95,10 +93,13 @@ public class TlvParser {
 
           case TagType.ORDER_ITEM: {
             if (length != 0) {
-              ItemsParser itemsParser = new ItemsParser(inputStream, length);
-              itemsParser.parse();
-
-              tags.add(new OrderItemTag(length, itemsParser.tags));
+              OrderItemListTag orderItemListTag = new OrderItemListTag(length, new ArrayList<>());
+              while (inputStream.available() > 0){
+                ItemsParser itemsParser = new ItemsParser(inputStream, length);
+                itemsParser.parse();
+                orderItemListTag.value.add(new OrderItemTag(length, itemsParser.tags));
+              }
+              tags.add(orderItemListTag);
             } else {
               tags.add(new OrderItemTag(0, new ArrayList<>()));
             }
