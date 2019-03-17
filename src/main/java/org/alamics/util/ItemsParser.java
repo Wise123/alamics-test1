@@ -32,7 +32,6 @@ public class ItemsParser {
 
       byte[] bytetagId = inputStream.readNBytes(2);
       usedBytesAmount += 2;
-      System.out.println(Arrays.toString(bytetagId));
       byte[] fullBytetagId = new byte[4];
       fullBytetagId[0] = bytetagId[0];
       fullBytetagId[1] = bytetagId[1];
@@ -43,7 +42,6 @@ public class ItemsParser {
           .wrap(fullBytetagId)
           .order(ByteOrder.LITTLE_ENDIAN)
           .getInt();
-      System.out.println(tagId);
 
 
       byte[] byteLength = inputStream.readNBytes(2);

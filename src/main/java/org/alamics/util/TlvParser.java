@@ -38,7 +38,6 @@ public class TlvParser {
             .wrap(fullBytetagId)
             .order(ByteOrder.LITTLE_ENDIAN)
             .getInt();
-        System.out.println(tagId);
 
 
         byte[] byteLength = inputStream.readNBytes(2);

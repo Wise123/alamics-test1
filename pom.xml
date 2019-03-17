@@ -12,6 +12,7 @@
     <groupId>org.alamics</groupId>
     <artifactId>tlvconverter</artifactId>
     <version>0.0.1</version>
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
@@ -34,7 +35,23 @@
                 <version>1.6.0</version>
                 <configuration>
                     <mainClass>org.alamics.Main</mainClass>
-                    <commandlineArgs>C:\gitSources\tlvconverter\src\main\resources\testData\input.tlv C:\gitSources\tlvconverter\src\main\resources\testData\output.json</commandlineArgs>
+                    <commandlineArgs>${basedir}/src/main/resources/testData/input.tlv ${basedir}/src/main/resources/testData/output.json</commandlineArgs>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <!-- Build an executable JAR -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <mainClass>org.alamics.Main</mainClass>
+                        </manifest>
+                    </archive>
                 </configuration>
             </plugin>
 
