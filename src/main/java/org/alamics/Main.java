@@ -26,7 +26,7 @@ public class Main {
       TlvParser tlvParser = new TlvParser(inputStream);
       tlvParser.parse();
 
-      System.out.println(tlvParser.getJson());
+      outputStream.write(tlvParser.getJson().getBytes());
 
     } catch (IOException e) {
       e.printStackTrace();
